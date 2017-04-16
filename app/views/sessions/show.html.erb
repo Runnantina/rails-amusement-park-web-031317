@@ -1,22 +1,13 @@
 <h1>User Profile</h1>
 
-<%= flash[:message] %><br>
-
-<% if @user.admin == true %>
-<h1> <%=  "ADMIN"  %> </h1>
-<% end %>
-
 <h3>Welcome <%=@user.name%>!</h3>
 <label>Name</label>
 <li> <%= @user.name %></li>
-<label>Tickets: </label>
+<label>Tickets</label>
 <li> <%= @user.tickets %></li>
 <label>Mood</label>
 <li> <%= @user.mood %></li>
 <label>Height</label>
 <li> <%= @user.height %></li>
 
-
-<%= link_to "See attractions", attindex_path %>
 <%= link_to "Edit", edit_user_path(@user) %>
-<%= link_to "Log Out", logout_path %>

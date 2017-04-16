@@ -1,5 +1,6 @@
-class UsersController < ApplicationController
+require 'pry'
 
+class UsersController < ApplicationController
 
   def index
   end
@@ -12,6 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.valid?
       @user.save
+      session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
       redirect_to new_user_path
@@ -19,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    authorize_user
     @user = User.find(params[:id])
   end
 
@@ -33,10 +36,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :password, :nausea, :happiness, :tickets, :height)
+    params.require(:user).permit(:name, :password, :nausea, :happiness, :tickets, :height, :admin)
   end
 
-  def login
-  end
 
 end

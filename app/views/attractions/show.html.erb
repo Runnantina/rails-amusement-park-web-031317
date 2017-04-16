@@ -1,0 +1,19 @@
+<h1>Attraction Show Page</h1>
+
+<% if @user.admin == true %>
+<%= "ADMIN" %>
+<% end %>
+
+<%= @attraction.name %>
+<%= @attraction.nausea_rating %>
+<%= @attraction.happiness_rating %>
+<%= @attraction.tickets %>
+<%= @attraction.min_height %>
+
+<% if @user.admin %>
+<%= link_to "Edit Attraction", attedit_path  %>
+<% end %>
+
+<% if @user.admin == false %>
+<%= button_to "Go on this ride", attride_path, :method => "get" %>
+<% end %>
